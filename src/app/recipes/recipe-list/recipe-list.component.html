@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">New Recipe</button>
+  </div>
+</div>
+<hr>
+<!-- I think I would need to use ngFor to loop through the array, then double curly brackets within the h4, p and img src to access the name, description and image URL. Unsure where to put the ngFor but I think the syntax would be *ngFor = "let item of Recipe" or "Recipe of recipes"-->
+<!-- I was close.  I initially put the ngFor in the div above the link, and had the variable named "Recipe" instead of "recipe". I put the double curl brackets in the right place, but forgot to include "recipe." before hand. This is needed because he variable created in the ngFor is essentially an object and I am accessing the elements of that object using dot notation, as per the correct code below.
+With the src in the image there are two options. The first is string interpolation as I have done in the working code below. The second is property binding. See below within this comment:
+<img [src] = "recipe.imagePath">
+-->
+<div class="row">
+  <div class="col-xs-12">
+    <a
+      href="#" class="list-group-item clearfix"
+      *ngFor = "let recipe of recipes"
+    >
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+        <p class="list-group-item-text">{{ recipe.description }}</p>
+      </div>
+      <span class="pull-right">
+        <img
+          src="{{ recipe.imagePath }}"
+          alt="{{ recipe.name }}"
+          class="img-responsive"
+          style="max-height: 50px;"
+        >
+      </span>
+    </a>
+    <app-recipe-item></app-recipe-item>
+  </div>
+</div>
+
