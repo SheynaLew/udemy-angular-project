@@ -23,7 +23,7 @@ export class RecipeItemComponent implements OnInit {
   }
 
   onRecipeSelected() {
-    // this function needs to send the data to the recipe detail component and emit an event for the recipe detail component to listen for
+    // this function needs to emit an event, with no information being included.
     this.recipeSelected.emit();
 
   }
