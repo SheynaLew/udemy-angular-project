@@ -7,13 +7,18 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <img src="" alt="" class="img-responsive">
+    <!-- Here we need to take the recipe image path and display it in the src -->
+    <img
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+      class="img-responsive"
+      style="max-width: 350px">
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <!-- Here we need to take the recipe name from the recipe-item component and display it in the h1 -->
-    <h1>Recipe Name</h1>
+    <h1>{{ recipe.name }}</h1>
   </div>
 </div>
 <div class="row">
@@ -33,7 +38,7 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- Here we need to take the recipe description and display it where it currently says "Description" -->
-    Description
+    {{ recipe.description }}
   </div>
 </div>
 <div class="row">

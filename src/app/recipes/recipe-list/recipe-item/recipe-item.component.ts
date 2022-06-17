@@ -14,11 +14,8 @@ export class RecipeItemComponent implements OnInit {
 
   @Input() recipe: Recipe;
 
-  @Output() recipeNameSent = new EventEmitter<any>();
-  @Output() recipeDescriptionSent = new EventEmitter<any>();
-
-  recipeName: string;
-  recipeDescription: string;
+  // the event emitter is not passing any information, it is just informing the parent component that an event was fired.
+  @Output() recipeSelected = new EventEmitter<void>();
 
   constructor() { }
 
@@ -26,11 +23,9 @@ export class RecipeItemComponent implements OnInit {
   }
 
   onRecipeSelected() {
-    this.recipeName = this.recipe.name;
-    this.recipeDescription = this.recipe.description;
     // this function needs to send the data to the recipe detail component and emit an event for the recipe detail component to listen for
-    this.recipeNameSent.emit(this.recipeName);
-    this.recipeDescriptionSent.emit(this.recipeDescription);
+    this.recipeSelected.emit();
+
   }
 
 }
