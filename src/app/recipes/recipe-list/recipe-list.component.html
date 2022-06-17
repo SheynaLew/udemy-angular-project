@@ -4,14 +4,8 @@
   </div>
 </div>
 <hr>
-<!-- I think I would need to use ngFor to loop through the array, then double curly brackets within the h4, p and img src to access the name, description and image URL. Unsure where to put the ngFor but I think the syntax would be *ngFor = "let item of Recipe" or "Recipe of recipes"-->
-<!-- I was close.  I initially put the ngFor in the div above the link, and had the variable named "Recipe" instead of "recipe". I put the double curl brackets in the right place, but forgot to include "recipe." before hand. This is needed because he variable created in the ngFor is essentially an object and I am accessing the elements of that object using dot notation, as per the correct code below.
-With the src in the image there are two options. The first is string interpolation as I have done in the working code below. The second is property binding. See below within this comment:
-<img [src] = "recipe.imagePath">
--->
 <div class="row">
   <div class="col-xs-12">
-
     <app-recipe-item *ngFor = "let recipeEl of recipes"
     [recipe]="recipeEl"></app-recipe-item>
   </div>
