@@ -23,8 +23,8 @@ export class ShoppingListComponent implements OnInit {
     this.ingredients = this.shoppingListService.getIngredients();
   }
 
-  addIngredient(newIngredient: Ingredient) {
-    this.ingredients.push(newIngredient);
-  }
+  // addIngredient(newIngredient: Ingredient) {
+  //   this.ingredients.push(newIngredient);
+  // }
 
 }
