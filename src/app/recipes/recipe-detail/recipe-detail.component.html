@@ -42,8 +42,10 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12" >
     <!-- Here we need to take the recipe ingredients and display them where it currently says "Ingredients" -->
-    Ingredients
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor = "let ingredient of recipe.ingredients">{{ingredient.name}}: {{ingredient.amount}}</li>
+    </ul>
   </div>
 </div>
