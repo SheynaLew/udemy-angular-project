@@ -21,9 +21,11 @@ export class RecipeDetailComponent implements OnInit {
   @HostListener('mouseclick') mouseclick(data: Event) {
   }
 
+  addToShoppingList() {
+    this.recipeService.addToShoppingList(this.recipe.ingredients);
+  }
+
   onDeleteRecipe() {
-
-
   }
 
 }

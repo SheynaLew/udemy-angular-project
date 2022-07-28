@@ -1,8 +1,11 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Recipe } from "../recipes/recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
+import { ShoppingListService } from "./shopping-list.service";
 
+@Injectable({providedIn:'root'})
 export class RecipeService {
+  constructor(private shoppingListService: ShoppingListService) {};
 
   recipeSelected = new EventEmitter<Recipe>();
 
@@ -38,9 +41,15 @@ export class RecipeService {
     return this.immutableRecipes;
   }
 
+  addToShoppingList(ingredients: Ingredient[]) {
+    let ingredient: Ingredient;
+    for (let i=0; i<ingredients.length; i++) {
+      ingredient=ingredients[i];
+      this.shoppingListService.addIngredient(ingredient);
+    }
+  }
+
   deleteRecipe() {
-
-
   }
 
 
