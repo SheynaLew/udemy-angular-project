@@ -42,9 +42,7 @@ export class RecipeService {
   }
 
   addToShoppingList(ingredients: Ingredient[]) {
-    let ingredient: Ingredient;
-    for (let i=0; i<ingredients.length; i++) {
-      ingredient=ingredients[i];
+    for (let ingredient of ingredients) {
       this.shoppingListService.addIngredient(ingredient);
     }
   }
