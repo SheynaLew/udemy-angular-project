@@ -23,6 +23,7 @@ export class RecipeListComponent implements OnInit {
     this.router.navigate(["new"], { relativeTo: this.route })
   }
 
+
 }
 
 //Initially I put a router link onto the html button, but as it's a button it should be a click listener with a function!
