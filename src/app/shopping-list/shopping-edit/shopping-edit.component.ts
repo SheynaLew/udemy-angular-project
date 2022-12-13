@@ -10,11 +10,15 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f', { static: false }) shoppingListForm: NgForm;
+
   editSubscription: Subscription;
 
   editMode = false;
   editedItemIndex: number;
   newItem: (string | number)[];
+  editedItem: Ingredient;
+
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
@@ -33,6 +37,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         (index: number) => {
           this.editedItemIndex = index;
           this.editMode = true;
+          this.editedItem = this.shoppingListService.getIngredient(index);
+          this.shoppingListForm.setValue({
+            name: this.editedItem.name,
+            amount: this.editedItem.amount
+          });
         });
   }
 

@@ -16,13 +16,18 @@ export class ShoppingListService {
 
   getIngredients() {
     return this.ingredients.slice();
+  };
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
   }
 
   addIngredient(newIngredient: Ingredient) {
     this.ingredients.push(newIngredient);
     this.ingredientAdded.next(this.ingredients.slice())
-
   }
+
+
 }
 
 // use this to store the shopping list
