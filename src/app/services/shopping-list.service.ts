@@ -1,6 +1,5 @@
 import { Subject } from "rxjs";
 
-
 import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
@@ -30,6 +29,13 @@ export class ShoppingListService {
   updateIngredient(index: number, newIngredient: Ingredient) {
     this.ingredients[index] = newIngredient;
     this.ingredientChanged.next(this.ingredients.slice());
+  }
+
+  deleteIngredient(index: number) {
+    console.log(index)
+    this.ingredients.splice(index, 1);
+    console.log(this.ingredients)
+    this.getIngredients();
   }
 
 }
