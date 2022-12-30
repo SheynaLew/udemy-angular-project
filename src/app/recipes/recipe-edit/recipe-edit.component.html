@@ -93,7 +93,19 @@
             <hr>
             <div class="row">
               <div class="col-xs-12">
-                <button class="btn btn-success" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  style="margin-right: 10px;"
+                  (click)="onAddIngredient()">
+                  Add Ingredient
+                </button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="onDeleteAllIngredients()">
+                  Delete All Ingredients
+                </button>
               </div>
             </div>
         </div>
