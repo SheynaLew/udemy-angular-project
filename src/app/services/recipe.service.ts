@@ -6,6 +6,8 @@ import { ShoppingListService } from "./shopping-list.service";
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
+  recipesChanged = new Subject<Recipe[]>();
+
   constructor(private shoppingListService: ShoppingListService) { };
 
 
@@ -49,13 +51,29 @@ export class RecipeService {
     for (let ingredient of ingredients) {
       this.shoppingListService.addIngredient(ingredient);
     }
-  }
+  };
 
-  deleteRecipe() {
-  }
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recreateRecipeArray();
+  };
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recreateRecipeArray();
+  };
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  };
+
+  recreateRecipeArray() {
+    this.recipesChanged.next(this.recipes.slice());
+  };
 
 
-}
+};
 
 //use this to store the recipes array - DONE
 //use this to add ingredients to shopping list
