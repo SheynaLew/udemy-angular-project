@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Recipe } from "../recipes/recipe.model";
+import { DataStorageService } from "../shared/data-storage-service";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "./shopping-list.service";
 
@@ -72,6 +73,10 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   };
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
 };
 
