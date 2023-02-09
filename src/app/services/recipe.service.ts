@@ -43,7 +43,7 @@ export class RecipeService {
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
-    this.recipesChanged.next(this.recipes.slice());
+    this.recreateRecipeArray();
   };
 
   recreateRecipeArray() {
@@ -52,7 +52,7 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
-    this.recipesChanged.next(this.recipes.slice());
+    this.recreateRecipeArray();
   }
 
 };
