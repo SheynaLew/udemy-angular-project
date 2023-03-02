@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment.prod";
 
 interface AuthResponseData {
   idToken: string,
@@ -14,9 +15,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  key = environment.authApiKey;
+
   signUp(email: string, password: string) {
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAXblGOseyWFce2yilCYdspWG0Rk7cxUR8',
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.key}`,
       {
         email: email,
         password: password,
@@ -25,5 +28,3 @@ export class AuthService {
     )
   }
 }
-
-// putting the key directly into the http request doesn't seem very secure... surely it should be in a file somewhere and that file git-ignored?
