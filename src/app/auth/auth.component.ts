@@ -5,4 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './auth.component.html'
 })
 
-export class AuthComponent { }
+export class AuthComponent {
+  isSignUpMode = true;
+
+  onSwitchMode() {
+    this.isSignUpMode = !this.isSignUpMode;
+  };
+
+};
