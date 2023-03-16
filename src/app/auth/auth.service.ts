@@ -18,10 +18,10 @@ export interface AuthResponseData {
 export class AuthService {
 
   user = new Subject<User>();
+  key = environment.authApiKey;
 
   constructor(private http: HttpClient) { }
 
-  key = environment.authApiKey;
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponseData>(
