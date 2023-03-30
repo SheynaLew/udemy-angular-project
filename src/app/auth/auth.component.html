@@ -1,53 +1,60 @@
 <div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <div class="loading-container" *ngIf="isLoading">
-      <app-loading-spinner></app-loading-spinner>
-    </div>
-    <div class="alert alert-danger" *ngIf="errorMessage">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="loading-container" *ngIf="isLoading">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <app-alert [message]="errorMessage" *ngIf="errorMessage"></app-alert>
+        <!-- <div class="alert alert-danger" *ngIf="errorMessage">
       <p>{{ errorMessage }}</p>
+    </div> -->
+        <form
+            #authForm="ngForm"
+            (ngSubmit)="onSubmit(authForm)"
+            *ngIf="!isLoading"
+        >
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    ngModel
+                    name="email"
+                    required
+                    email
+                />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    ngModel
+                    name="password"
+                    required
+                    minlength="6"
+                />
+            </div>
+            <div>
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                    [disabled]="!authForm.valid"
+                >
+                    {{ isSignUpMode ? "Sign Up" : "Log In" }}
+                </button>
+                |
+                <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="onSwitchMode()"
+                >
+                    {{
+                        isSignUpMode ? "Switch to Log In" : "Switch to Sign Up"
+                    }}
+                </button>
+            </div>
+        </form>
     </div>
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          ngModel
-          name="email"
-          required
-          email
-        >
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          ngModel
-          name="password"
-          required
-          minlength="6"
-        >
-      </div>
-      <div>
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="!authForm.valid"
-        >
-          {{ isSignUpMode ? 'Sign Up' : 'Log In'}}
-        </button>
-        |
-        <button
-          class="btn btn-primary"
-          type="button"
-          (click)="onSwitchMode()"
-        >
-          {{ isSignUpMode ? 'Switch to Log In' : 'Switch to Sign Up'}}
-        </button>
-      </div>
-    </form>
-  </div>
 </div>
