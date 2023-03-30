@@ -5,56 +5,56 @@ import { Observable } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css'],
 })
-
 export class AuthComponent {
-  constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router) {}
 
-  isSignUpMode = true;
-  isLoading = false;
-  errorMessage: string = null;
+    isSignUpMode = true;
+    isLoading = false;
+    errorMessage: string = null;
 
-  onSwitchMode() {
-    this.isSignUpMode = !this.isSignUpMode;
-  };
+    onSwitchMode() {
+        this.isSignUpMode = !this.isSignUpMode;
+    }
 
-  onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
-    };
+    onSubmit(form: NgForm) {
+        if (!form.valid) {
+            return;
+        }
 
-    const email = form.value.email;
-    const password = form.value.password;
+        const email = form.value.email;
+        const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>;
+        let authObs: Observable<AuthResponseData>;
 
-    this.isLoading = true;
+        this.isLoading = true;
 
-    if (this.isSignUpMode) {
-      authObs = this.authService.signUp(email, password);
+        if (this.isSignUpMode) {
+            authObs = this.authService.signUp(email, password);
+        } else {
+            authObs = this.authService.logIn(email, password);
+        }
 
-    } else {
-      authObs = this.authService.logIn(email, password);
-    };
+        authObs.subscribe(
+            (resData) => {
+                console.log(resData);
+                this.errorMessage = null;
+                this.isLoading = false;
+                this.router.navigate(['/recipes']);
+            },
+            (errorMessage) => {
+                console.log(errorMessage);
+                this.errorMessage = errorMessage;
+                this.isLoading = false;
+            }
+        );
+        form.reset();
+    }
 
-    authObs.subscribe(
-      resData => {
-        console.log(resData)
+    onHandleError() {
         this.errorMessage = null;
-        this.isLoading = false;
-        this.router.navigate(['/recipes']);
-      },
-      errorMessage => {
-        console.log(errorMessage)
-        this.errorMessage = errorMessage
-        this.isLoading = false;
-      }
-    )
-    form.reset();
-  };
-
-
-};
+    }
+}
